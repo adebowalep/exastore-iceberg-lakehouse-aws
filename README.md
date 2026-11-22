@@ -9,6 +9,19 @@ Events JSON (S3) ──→  Glue: Events Bronze ──→  S3 Iceberg (events)
                       Glue: Gold Layer     ──→  S3 Tables  (customer_analytics, realtime_metrics)
 ```
 
+## Project Structure
+
+```text
+.
+├── datasets/            # sample CDC (Debezium JSON), supplemental CDC and clickstream events
+├── glue-jobs/
+│   ├── cdc-batch/       # Bronze: CDC MERGE for orders, users, products
+│   ├── events/          # Bronze: append-only events
+│   ├── silver/          # Silver: enriched tables on S3 Tables
+│   └── gold/            # Gold: analytics tables on S3 Tables
+├── project.ipynb        # runs the jobs, validates each layer, snapshots and time travel
+└── rubric-verification.md
+
 ## What You'll Build
 
 | Layer | Storage | Tables | Technique |
